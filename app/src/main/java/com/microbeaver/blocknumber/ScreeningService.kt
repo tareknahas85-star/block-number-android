@@ -24,6 +24,13 @@ class ScreeningService : CallScreeningService() {
             return
         }
 
+        // Per-SIM control: if this call arrives on a SIM with blocking disabled, allow it.
+        val simId = callDetails.accountHandle?.id
+        if (simId != null && !prefs.simBlockEnabled(simId)) {
+            respondTo(callDetails, allow = true)
+            return
+        }
+
         val number = callDetails.handle?.schemeSpecificPart?.trim().orEmpty()
 
         val allow = when {
@@ -62,12 +69,4 @@ class ScreeningService : CallScreeningService() {
             )
             contentResolver.query(
                 uri,
-                arrayOf(ContactsContract.PhoneLookup._ID),
-                null, null, null
-            )?.use { it.count > 0 } ?: false
-        } catch (e: SecurityException) {
-            // No contacts permission → fail open (don't block legitimate calls)
-            true
-        }
-    }
-}
+             

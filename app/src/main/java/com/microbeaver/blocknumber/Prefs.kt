@@ -13,8 +13,6 @@ class Prefs(context: Context) {
         get() = sp.getBoolean(KEY_BLOCK_HIDDEN, true)
         set(value) = sp.edit().putBoolean(KEY_BLOCK_HIDDEN, value).apply()
 
-    companion object {
-        private const val KEY_ENABLED = "blocking_enabled"
-        private const val KEY_BLOCK_HIDDEN = "block_hidden"
-    }
-}
+    /** Per-SIM blocking: keyed by PhoneAccountHandle.id, enabled by default. */
+    fun simBlockEnabled(simId: String): Boolean =
+        sp.getBoole

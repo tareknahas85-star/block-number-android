@@ -4,6 +4,7 @@ Android app that automatically blocks incoming calls from numbers **not in your 
 
 ## Features
 - Blocks any incoming call whose number is not saved in contacts
+- Per-SIM control on dual-SIM devices (e.g. SIM 1 blocks unknown callers, SIM 2 receives everything)
 - Optional blocking of hidden/private numbers
 - Log of blocked calls (number + time), with clear option
 - On/off toggle
@@ -25,4 +26,4 @@ gradle assembleDebug
 Requires JDK 17 and Android SDK (compileSdk 35).
 
 ## How it works
-`ScreeningService` receives every incoming call before it rings. It looks the number up via `ContactsContract.PhoneLookup`; if not found, the call is rejected silently and recorded in a local SQLite log. If contacts permission is missing, calls are allowed (fail-open) to avoid blocking legitimate calls.
+`ScreeningService` receives every incoming call before it rings. It looks the number up via `ContactsContract.PhoneLookup`; if not found, the call is rejected silently and recorded in a local SQLite log. 

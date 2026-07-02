@@ -11,4 +11,4 @@
     <string name="status_paused">الحماية متوقفة مؤقتاً</string>
     <string name="status_no_role">اضغط الزر بالأسفل لتفعيل فحص المكالمات</string>
     <string name="status_no_contacts">يلزم إذن جهات الاتصال ليعمل التطبيق بشكل صحيح</string>
-</resources>
+    <string n
