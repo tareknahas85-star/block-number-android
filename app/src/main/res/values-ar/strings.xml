@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">حظر الأرقام</string>
+    <string name="grant_role">تعيين كتطبيق فحص المكالمات</string>
+    <string name="enable_blocking">حظر الأرقام غير الموجودة بجهات الاتصال</string>
+    <string name="block_hidden">حظر الأرقام المخفية</string>
+    <string name="blocked_log">المكالمات المحظورة</string>
+    <string name="clear_log">مسح</string>
+    <string name="hidden_number">رقم مخفي</string>
+    <string name="status_active">الحماية مفعّلة — الأرقام غير المعروفة تُحظر تلقائياً</string>
+    <string name="status_paused">الحماية متوقفة مؤقتاً</string>
+    <string name="status_no_role">اضغط الزر بالأسفل لتفعيل فحص المكالمات</string>
+    <string name="status_no_contacts">يلزم إذن جهات الاتصال ليعمل التطبيق بشكل صحيح</string>
+</resources>

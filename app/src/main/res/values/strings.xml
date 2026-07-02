@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Block Number</string>
+    <string name="grant_role">Set as call screening app</string>
+    <string name="enable_blocking">Block numbers not in contacts</string>
+    <string name="block_hidden">Block hidden numbers</string>
+    <string name="blocked_log">Blocked calls</string>
+    <string name="clear_log">Clear</string>
+    <string name="hidden_number">Hidden number</string>
+    <string name="status_active">Protection active — unknown numbers are blocked</string>
+    <string name="status_paused">Protection paused</string>
+    <string name="status_no_role">Tap the button below to activate call screening</string>
+    <string name="status_no_contacts">Contacts permission required to work correctly</string>
+</resources>
