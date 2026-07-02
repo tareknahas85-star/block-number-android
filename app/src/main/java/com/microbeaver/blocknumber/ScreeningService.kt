@@ -69,4 +69,12 @@ class ScreeningService : CallScreeningService() {
             )
             contentResolver.query(
                 uri,
-             
+                arrayOf(ContactsContract.PhoneLookup._ID),
+                null, null, null
+            )?.use { it.count > 0 } ?: false
+        } catch (e: SecurityException) {
+            // No contacts permission → fail open (don't block legitimate calls)
+            true
+        }
+    }
+}

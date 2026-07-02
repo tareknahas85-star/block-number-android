@@ -145,4 +145,50 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateStatus() {
         val hasRole = hasScreeningRole()
-        val hasContac
+        val hasContacts = hasPermission(Manifest.permission.READ_CONTACTS)
+
+        roleButton.visibility = if (hasRole) View.GONE else View.VISIBLE
+        statusText.text = when {
+            !hasRole -> getString(R.string.status_no_role)
+            !hasContacts -> getString(R.string.status_no_contacts)
+            prefs.blockingEnabled -> getString(R.string.status_active)
+            else -> getString(R.string.status_paused)
+        }
+    }
+
+    private fun refreshList() {
+        adapter.submit(store.getAll())
+    }
+
+    private inner class BlockedCallAdapter :
+        RecyclerView.Adapter<BlockedCallAdapter.Holder>() {
+
+        private var items: List<BlockedCall> = emptyList()
+
+        fun submit(newItems: List<BlockedCall>) {
+            items = newItems
+            notifyDataSetChanged()
+        }
+
+        inner class Holder(view: View) : RecyclerView.ViewHolder(view) {
+            val number: TextView = view.findViewById(R.id.itemNumber)
+            val time: TextView = view.findViewById(R.id.itemTime)
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+            val v = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_blocked, parent, false)
+            return Holder(v)
+        }
+
+        override fun onBindViewHolder(holder: Holder, position: Int) {
+            val item = items[position]
+            holder.number.text = item.number
+            holder.time.text = DateFormat.getDateTimeInstance(
+                DateFormat.SHORT, DateFormat.SHORT
+            ).format(Date(item.timestamp))
+        }
+
+        override fun getItemCount() = items.size
+    }
+}

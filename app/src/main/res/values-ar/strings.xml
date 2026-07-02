@@ -11,4 +11,7 @@
     <string name="status_paused">الحماية متوقفة مؤقتاً</string>
     <string name="status_no_role">اضغط الزر بالأسفل لتفعيل فحص المكالمات</string>
     <string name="status_no_contacts">يلزم إذن جهات الاتصال ليعمل التطبيق بشكل صحيح</string>
-    <string n
+    <string name="sim_section">الحظر حسب الشريحة</string>
+    <string name="sim_block_on">حظر غير المعروفين على %1$s</string>
+    <string name="sim_n">الشريحة %1$d</string>
+</resources>

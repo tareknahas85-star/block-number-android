@@ -26,4 +26,4 @@ gradle assembleDebug
 Requires JDK 17 and Android SDK (compileSdk 35).
 
 ## How it works
-`ScreeningService` receives every incoming call before it rings. It looks the number up via `ContactsContract.PhoneLookup`; if not found, the call is rejected silently and recorded in a local SQLite log. 
+`ScreeningService` receives every incoming call before it rings. It looks the number up via `ContactsContract.PhoneLookup`; if not found, the call is rejected silently and recorded in a local SQLite log.  If contacts permission is missing, calls are allowed (fail-open) to avoid blocking legitimate calls. On dual-SIM devices, the UI shows one switch per SIM (via `TelecomManager` phone accounts) and the service checks the incoming call's `PhoneAccountHandle` against the per-SIM setting.
