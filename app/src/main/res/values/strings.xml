@@ -2,16 +2,66 @@
 <resources>
     <string name="app_name">Block Number</string>
     <string name="grant_role">Set as call screening app</string>
-    <string name="enable_blocking">Block numbers not in contacts</string>
+    <string name="enable_blocking">Protection enabled</string>
+    <string name="block_unknown">Block numbers not in contacts</string>
     <string name="block_hidden">Block hidden numbers</string>
+    <string name="block_by_rating">Block numbers with negative rating</string>
     <string name="blocked_log">Blocked calls</string>
-    <string name="clear_log">Clear</string>
+    <string name="clear_log">Clear log</string>
     <string name="hidden_number">Hidden number</string>
-    <string name="status_active">Protection active — unknown numbers are blocked</string>
+    <string name="status_active">Protection active — unwanted calls are blocked</string>
     <string name="status_paused">Protection paused</string>
     <string name="status_no_role">Tap the button below to activate call screening</string>
     <string name="status_no_contacts">Contacts permission required to work correctly</string>
     <string name="sim_section">Per-SIM blocking</string>
-    <string name="sim_block_on">Block unknown callers on %1$s</string>
+    <string name="sim_block_on">Block on %1$s</string>
     <string name="sim_n">SIM %1$d</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_blacklist">Blacklist</string>
+    <string name="nav_log">Log</string>
+
+    <string name="section_rules">Blocking rules</string>
+    <string name="section_notifications">Notifications</string>
+    <string name="section_database">Spam number database</string>
+
+    <string name="notify_caller_info">Show caller info while ringing</string>
+    <string name="notify_blocked">Notify when a call is blocked</string>
+    <string name="channel_caller_info">Caller info</string>
+    <string name="channel_blocked">Blocked calls</string>
+    <string name="unknown_caller">Unknown caller</string>
+    <string name="known_number">Known number</string>
+    <string name="suspected_spam">Suspected spam</string>
+    <string name="uncategorized">Uncategorized</string>
+    <string name="caller_info_summary">%1$s · %2$d negative · %3$d positive</string>
+    <string name="blocked_call_title">Blocked: %1$s</string>
+
+    <string name="auto_update_db">Auto-update database daily</string>
+    <string name="update_db_now">Update now</string>
+    <string name="db_status">%1$d numbers · version %2$s</string>
+    <string name="db_status_empty">Database not downloaded yet</string>
+    <string name="db_updating">Updating database…</string>
+    <string name="db_updated">Database updated: %1$d numbers (v%2$s)</string>
+    <string name="db_up_to_date">Database is up to date</string>
+    <string name="db_update_failed">Update failed: %1$s</string>
+
+    <string name="add_blacklist_title">Add to blacklist</string>
+    <string name="pattern_hint">Number or pattern</string>
+    <string name="pattern_helper">* = any digits, # = one digit. Example: +9665*</string>
+    <string name="label_hint">Label (optional)</string>
+    <string name="blacklist_empty">Blacklist is empty.\nAdd numbers or patterns with the + button.</string>
+    <string name="log_empty">No blocked calls yet</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="cancel">Cancel</string>
+    <string name="added_to_blacklist">Added to blacklist</string>
+    <string name="already_in_blacklist">Already in the blacklist</string>
+    <string name="copy_number">Copy number</string>
+    <string name="copied">Copied</string>
+    <string name="add_to_blacklist">Add to blacklist</string>
+
+    <string name="reason_not_in_contacts">Not in contacts</string>
+    <string name="reason_blacklist">Blacklist</string>
+    <string name="reason_hidden">Hidden</string>
+    <string name="reason_spam">Spam rating</string>
 </resources>

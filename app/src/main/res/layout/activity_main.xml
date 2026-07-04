@@ -1,75 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/statusText"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceTitleMedium"
-        android:paddingBottom="8dp" />
+        app:liftOnScroll="true">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/roleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/grant_role" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/enableSwitch"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/enable_blocking" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/hiddenSwitch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/block_hidden" />
+        <!-- ============ HOME PAGE ============ -->
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/pageHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="96dp">
 
-    <TextView
-        android:id="@+id/simTitle"
-        android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Status hero card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/statusCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="24dp">
+
+                        <ImageView
+                            android:id="@+id/statusIcon"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/ic_shield_check"
+                            android:contentDescription="@string/app_name" />
+
+                        <TextView
+                            android:id="@+id/statusText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/roleButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/grant_role" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/enableSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/enable_blocking" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Protection rules -->
+                <TextView
+                    style="@style/SectionHeader"
+                    android:text="@string/section_rules" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/SettingsCard">
+
+                    <LinearLayout
+                        style="@style/SettingsCardInner">
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/unknownSwitch"
+                            style="@style/SettingSwitch"
+                            android:text="@string/block_unknown" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/hiddenSwitch"
+                            style="@style/SettingSwitch"
+                            android:text="@string/block_hidden" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/ratingSwitch"
+                            style="@style/SettingSwitch"
+                            android:text="@string/block_by_rating" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Notifications -->
+                <TextView
+                    style="@style/SectionHeader"
+                    android:text="@string/section_notifications" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/SettingsCard">
+
+                    <LinearLayout
+                        style="@style/SettingsCardInner">
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/callerInfoSwitch"
+                            style="@style/SettingSwitch"
+                            android:text="@string/notify_caller_info" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/notifyBlockedSwitch"
+                            style="@style/SettingSwitch"
+                            android:text="@string/notify_blocked" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Spam database -->
+                <TextView
+                    style="@style/SectionHeader"
+                    android:text="@string/section_database" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/SettingsCard">
+
+                    <LinearLayout
+                        style="@style/SettingsCardInner">
+
+                        <TextView
+                            android:id="@+id/dbStatusText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?attr/textAppearanceBodyMedium" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/autoUpdateSwitch"
+                            style="@style/SettingSwitch"
+                            android:text="@string/auto_update_db" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/updateDbButton"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/update_db_now"
+                            app:icon="@drawable/ic_sync" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Per-SIM -->
+                <TextView
+                    android:id="@+id/simTitle"
+                    style="@style/SectionHeader"
+                    android:text="@string/sim_section"
+                    android:visibility="gone" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/simCard"
+                    style="@style/SettingsCard"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/simContainer"
+                        style="@style/SettingsCardInner" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- ============ BLACKLIST PAGE ============ -->
+        <FrameLayout
+            android:id="@+id/pageBlacklist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/blacklistList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="96dp" />
+
+            <LinearLayout
+                android:id="@+id/blacklistEmpty"
+                style="@style/EmptyState">
+
+                <ImageView
+                    style="@style/EmptyStateIcon"
+                    android:src="@drawable/ic_block"
+                    android:contentDescription="@string/nav_blacklist" />
+
+                <TextView
+                    style="@style/EmptyStateText"
+                    android:text="@string/blacklist_empty" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- ============ LOG PAGE ============ -->
+        <FrameLayout
+            android:id="@+id/pageLog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/blockedList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="96dp" />
+
+            <LinearLayout
+                android:id="@+id/logEmpty"
+                style="@style/EmptyState">
+
+                <ImageView
+                    style="@style/EmptyStateIcon"
+                    android:src="@drawable/ic_history"
+                    android:contentDescription="@string/nav_log" />
+
+                <TextView
+                    style="@style/EmptyStateText"
+                    android:text="@string/log_empty" />
+            </LinearLayout>
+        </FrameLayout>
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addBlacklistFab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="12dp"
-        android:text="@string/sim_section"
-        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/add_blacklist_title"
+        android:layout_marginBottom="96dp"
+        android:src="@drawable/ic_add"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/simContainer"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="16dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/blocked_log"
-            android:textAppearance="?attr/textAppearanceTitleMedium" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/clearButton"
-            style="@style/Widget.Material3.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clear_log" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/blockedList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

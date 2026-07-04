@@ -2,16 +2,66 @@
 <resources>
     <string name="app_name">حظر الأرقام</string>
     <string name="grant_role">تعيين كتطبيق فحص المكالمات</string>
-    <string name="enable_blocking">حظر الأرقام غير الموجودة بجهات الاتصال</string>
+    <string name="enable_blocking">الحماية مفعّلة</string>
+    <string name="block_unknown">حظر الأرقام غير الموجودة بجهات الاتصال</string>
     <string name="block_hidden">حظر الأرقام المخفية</string>
+    <string name="block_by_rating">حظر الأرقام ذات التقييم السلبي</string>
     <string name="blocked_log">المكالمات المحظورة</string>
-    <string name="clear_log">مسح</string>
+    <string name="clear_log">مسح السجل</string>
     <string name="hidden_number">رقم مخفي</string>
-    <string name="status_active">الحماية مفعّلة — الأرقام غير المعروفة تُحظر تلقائياً</string>
+    <string name="status_active">الحماية مفعّلة — المكالمات غير المرغوبة تُحظر تلقائياً</string>
     <string name="status_paused">الحماية متوقفة مؤقتاً</string>
     <string name="status_no_role">اضغط الزر بالأسفل لتفعيل فحص المكالمات</string>
     <string name="status_no_contacts">يلزم إذن جهات الاتصال ليعمل التطبيق بشكل صحيح</string>
     <string name="sim_section">الحظر حسب الشريحة</string>
-    <string name="sim_block_on">حظر غير المعروفين على %1$s</string>
+    <string name="sim_block_on">الحظر على %1$s</string>
     <string name="sim_n">الشريحة %1$d</string>
+
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_blacklist">القائمة السوداء</string>
+    <string name="nav_log">السجل</string>
+
+    <string name="section_rules">قواعد الحظر</string>
+    <string name="section_notifications">الإشعارات</string>
+    <string name="section_database">قاعدة الأرقام المزعجة</string>
+
+    <string name="notify_caller_info">عرض معلومات المتصل أثناء الرنين</string>
+    <string name="notify_blocked">إشعار عند حظر مكالمة</string>
+    <string name="channel_caller_info">معلومات المتصل</string>
+    <string name="channel_blocked">المكالمات المحظورة</string>
+    <string name="unknown_caller">متصل غير معروف</string>
+    <string name="known_number">رقم معروف</string>
+    <string name="suspected_spam">مشتبه بأنه مزعج</string>
+    <string name="uncategorized">غير مصنّف</string>
+    <string name="caller_info_summary">%1$s · %2$d سلبي · %3$d إيجابي</string>
+    <string name="blocked_call_title">تم الحظر: %1$s</string>
+
+    <string name="auto_update_db">تحديث القاعدة تلقائياً يومياً</string>
+    <string name="update_db_now">تحديث الآن</string>
+    <string name="db_status">%1$d رقم · إصدار %2$s</string>
+    <string name="db_status_empty">لم يتم تنزيل قاعدة البيانات بعد</string>
+    <string name="db_updating">جارٍ تحديث القاعدة…</string>
+    <string name="db_updated">تم التحديث: %1$d رقم (إصدار %2$s)</string>
+    <string name="db_up_to_date">القاعدة محدّثة بالفعل</string>
+    <string name="db_update_failed">فشل التحديث: %1$s</string>
+
+    <string name="add_blacklist_title">إضافة إلى القائمة السوداء</string>
+    <string name="pattern_hint">رقم أو نمط</string>
+    <string name="pattern_helper">* = أي أرقام، # = خانة واحدة. مثال: +9665*</string>
+    <string name="label_hint">تسمية (اختياري)</string>
+    <string name="blacklist_empty">القائمة السوداء فارغة.\nأضف أرقاماً أو أنماطاً بزر +.</string>
+    <string name="log_empty">لا توجد مكالمات محظورة بعد</string>
+    <string name="delete">حذف</string>
+    <string name="add">إضافة</string>
+    <string name="cancel">إلغاء</string>
+    <string name="added_to_blacklist">تمت الإضافة إلى القائمة السوداء</string>
+    <string name="already_in_blacklist">موجود مسبقاً في القائمة السوداء</string>
+    <string name="copy_number">نسخ الرقم</string>
+    <string name="copied">تم النسخ</string>
+    <string name="add_to_blacklist">أضف للقائمة السوداء</string>
+
+    <string name="reason_not_in_contacts">ليس في جهات الاتصال</string>
+    <string name="reason_blacklist">قائمة سوداء</string>
+    <string name="reason_hidden">مخفي</string>
+    <string name="reason_spam">تقييم سلبي</string>
 </resources>
