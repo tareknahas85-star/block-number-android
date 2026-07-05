@@ -64,4 +64,8 @@
     <string name="reason_blacklist">Blacklist</string>
     <string name="reason_hidden">Hidden</string>
     <string name="reason_spam">Spam rating</string>
+
+    <string name="truecaller_search">Search on Truecaller</string>
+    <string name="sim_grant_permission">Grant phone permission to show SIM options</string>
+    <string name="sim_none_detected">No active SIM detected</string>
 </resources>
