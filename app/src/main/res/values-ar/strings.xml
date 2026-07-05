@@ -64,4 +64,8 @@
     <string name="reason_blacklist">قائمة سوداء</string>
     <string name="reason_hidden">مخفي</string>
     <string name="reason_spam">تقييم سلبي</string>
+
+    <string name="truecaller_search">بحث في Truecaller</string>
+    <string name="sim_grant_permission">امنح إذن الهاتف لعرض خيارات الشرائح</string>
+    <string name="sim_none_detected">لم يتم اكتشاف شريحة نشطة</string>
 </resources>
