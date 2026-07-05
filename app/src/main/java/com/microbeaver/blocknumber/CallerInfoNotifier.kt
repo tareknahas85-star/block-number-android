@@ -54,6 +54,23 @@ object CallerInfoNotifier {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+    private fun truecallerAction(
+        context: Context,
+        number: String
+    ): NotificationCompat.Action? {
+        if (number.none { it.isDigit() }) return null
+        val pi = PendingIntent.getActivity(
+            context, number.hashCode(),
+            Truecaller.searchIntent(context, number),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        return NotificationCompat.Action(
+            R.drawable.ic_info,
+            context.getString(R.string.truecaller_search),
+            pi
+        )
+    }
+
     /** Caller info while ringing: contact/spam/unknown summary. */
     fun showCallerInfo(context: Context, number: String, spam: SpamEntry?) {
         if (!canNotify(context)) return
@@ -78,7 +95,7 @@ object CallerInfoNotifier {
             icon = R.drawable.ic_info
         }
 
-        val notification = NotificationCompat.Builder(context, CHANNEL_CALLER_INFO)
+        val builder = NotificationCompat.Builder(context, CHANNEL_CALLER_INFO)
             .setSmallIcon(icon)
             .setContentTitle(title)
             .setContentText(if (spam != null) "$number — $text" else text)
@@ -86,7 +103,8 @@ object CallerInfoNotifier {
             .setCategory(NotificationCompat.CATEGORY_CALL)
             .setAutoCancel(true)
             .setTimeoutAfter(60_000)
-            .build()
+        truecallerAction(context, number)?.let { builder.addAction(it) }
+        val notification = builder.build()
         NotificationManagerCompat.from(context).notify(ID_CALLER_INFO, notification)
     }
 
@@ -101,13 +119,14 @@ object CallerInfoNotifier {
             BlockedCallStore.REASON_SPAM -> context.getString(R.string.reason_spam)
             else -> context.getString(R.string.reason_not_in_contacts)
         }
-        val notification = NotificationCompat.Builder(context, CHANNEL_BLOCKED)
+        val builder = NotificationCompat.Builder(context, CHANNEL_BLOCKED)
             .setSmallIcon(R.drawable.ic_block)
             .setContentTitle(context.getString(R.string.blocked_call_title, number))
             .setContentText(reasonText)
             .setContentIntent(contentIntent(context))
             .setAutoCancel(true)
-            .build()
+        truecallerAction(context, number)?.let { builder.addAction(it) }
+        val notification = builder.build()
         NotificationManagerCompat.from(context)
             .notify((System.currentTimeMillis() % 100000).toInt() + 2000, notification)
     }

@@ -209,21 +209,38 @@ class MainActivity : AppCompatActivity() {
         val title = findViewById<TextView>(R.id.simTitle)
         val card = findViewById<MaterialCardView>(R.id.simCard)
         container.removeAllViews()
+        title.visibility = View.VISIBLE
+        card.visibility = View.VISIBLE
+
+        // No phone permission: show a button to grant it instead of hiding the section.
         if (!hasPermission(Manifest.permission.READ_PHONE_STATE)) {
-            title.visibility = View.GONE
-            card.visibility = View.GONE
+            val btn = MaterialButton(this).apply {
+                text = getString(R.string.sim_grant_permission)
+                setOnClickListener {
+                    permissionsLauncher.launch(
+                        arrayOf(Manifest.permission.READ_PHONE_STATE)
+                    )
+                }
+            }
+            container.addView(btn)
             return
         }
+
         val tm = getSystemService(TelecomManager::class.java)
         val accounts = try {
             tm.callCapablePhoneAccounts
         } catch (e: SecurityException) {
             emptyList()
         }
-        val show = accounts.size >= 2
-        title.visibility = if (show) View.VISIBLE else View.GONE
-        card.visibility = if (show) View.VISIBLE else View.GONE
-        if (!show) return
+
+        if (accounts.isEmpty()) {
+            val tv = TextView(this).apply {
+                text = getString(R.string.sim_none_detected)
+            }
+            container.addView(tv)
+            return
+        }
+
         accounts.forEachIndexed { index, handle ->
             val label = try {
                 tm.getPhoneAccount(handle)?.label?.toString()
@@ -367,7 +384,8 @@ class MainActivity : AppCompatActivity() {
     private fun showLogItemDialog(item: BlockedCall) {
         val options = arrayOf(
             getString(R.string.add_to_blacklist),
-            getString(R.string.copy_number)
+            getString(R.string.copy_number),
+            getString(R.string.truecaller_search)
         )
         MaterialAlertDialogBuilder(this)
             .setTitle(item.number)
@@ -379,6 +397,7 @@ class MainActivity : AppCompatActivity() {
                         cm.setPrimaryClip(ClipData.newPlainText("number", item.number))
                         snack(getString(R.string.copied))
                     }
+                    2 -> Truecaller.open(this, item.number)
                 }
             }
             .show()
