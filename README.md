@@ -1,75 +1,117 @@
 # Block Number
 
-**[⬇️ حمّل الـ APK (آخر نسخة)](https://github.com/tareknahas85-star/block-number-android/releases/download/latest/block-number.apk)** &nbsp;|&nbsp; **[⬇️ Download latest APK](https://github.com/tareknahas85-star/block-number-android/releases/download/latest/block-number.apk)**
-
----
-
-## بالعربي
-
-تطبيق حظر مكالمات لأندرويد، شغال على `CallScreeningService` الرسمية تبع أندرويد — يعني بدون روت وبدون ما تستبدل تطبيق الاتصال الافتراضي. واجهة Material Design 3، عربي وإنكليزي (RTL).
-
-### شو فيه (v2.0)
-- حظر أي مكالمة من رقم مش محفوظ عندك بجهات الاتصال (تقدر تفعّله أو لأ)
-- **قائمة سوداء محلية مع wildcards**: `*` = أي أرقام، `#` = رقم واحد (مثلاً `+9665*`)
-- **قاعدة بيانات سبام أوفلاين**: بتحظر الأرقام يلي تقييمها سلبي، وبتتحدث من ملف CSV بعيد (تلقائي يومي أو يدوي)
-- إشعار بمعلومات المتصل وهو عم يرن (تصنيف السبام، أو تنبيه إنو الرقم مجهول)
-- إشعار اختياري لما تنحظر مكالمة
-- سجل المكالمات المحظورة مع **سبب الحظر** — دوس على أي سطر تحظره أو تنسخ الرقم
-- تحكم منفصل لكل شريحة على أجهزة الدوال سيم
-- حظر الأرقام المخفية/الخاصة
-- واجهة Material 3: تنقل سفلي (الرئيسية / القائمة السوداء / السجل)، بطاقة حالة، ألوان ديناميكية على أندرويد 12+
-
-### قاعدة بيانات السبام
-مستضافة كملفات ثابتة (افتراضياً من [block-number-data](https://github.com/tareknahas85-star/block-number-data)):
-- `version.txt`: تاريخ آخر تحديث
-- `spamdb.csv`: `number,category,negative,positive,neutral,name`
-
-التطبيق بيتفقّد `version.txt` بس، وبيحمّل `spamdb.csv` الجديد بس لما يتغيّر — يعني تحديث بدون ما تحتاج تحدث التطبيق نفسه.
-
-### شو بدك
-- أندرويد 10 (API 29) أو أحدث
-- صلاحيات: `READ_CONTACTS`, `READ_PHONE_STATE`, `POST_NOTIFICATIONS` (13+), `INTERNET` + دور Call Screening
-
-### كيف بتشتغل
-`ScreeningService` بتستقبل كل مكالمة قبل ما ترن، وبتمشي بسلسلة قرار: معطل/شريحة مستثناة → تسمح؛ رقم مخفي → تحظر لو مفعّل؛ **بجهات الاتصال → دايماً تسمح**؛ بالقائمة السوداء → تحظر؛ تقييم سلبي → تحظر لو مفعّل؛ مش بجهات الاتصال → تحظر لو مفعّل؛ غير هيك تسمح (وممكن تعرض إشعار معلومات المتصل). كل حظر بينسجل مع سببه. لو صلاحية جهات الاتصال مو موجودة، التطبيق بيسمح افتراضياً (fail open).
+**[⬇️ Download latest APK](https://github.com/tareknahas85-star/block-number-android/releases/download/latest/block-number.apk)** &nbsp;|&nbsp; **[⬇️ حمّل آخر نسخة APK](https://github.com/tareknahas85-star/block-number-android/releases/download/latest/block-number.apk)**
 
 ---
 
 ## In English
 
-Android call blocking app built on the official `CallScreeningService` API — no root, no dialer replacement needed. Material Design 3 UI, Arabic + English with full RTL support.
+An Android app that blocks calls you do not want. It uses the official Android way to check calls, so you do not need root, and you do not need to change your phone dialer. The app is in Arabic and English.
 
-### Features (v2.0)
-- Block incoming calls from numbers **not in your contacts** (toggle on/off)
-- **Local blacklist with wildcards**: `*` = any digits, `#` = one digit (e.g. `+9665*`)
-- **Offline spam number database**: blocks numbers with a negative rating, updatable from a remote CSV (daily auto update or manual)
-- **Caller info notification** while ringing (spam rating/category, or unknown caller notice)
-- Optional notification when a call is blocked
-- Blocked call log with **block reason** — tap an entry to blacklist or copy the number
-- Per-SIM control on dual SIM devices
-- Block hidden/private numbers
-- Material 3 UI: bottom navigation (Home / Blacklist / Log), status card, dynamic color on Android 12+
+### What it does
 
-### Spam database
-Hosted as static files (default: [block-number-data](https://github.com/tareknahas85-star/block-number-data)):
-- `version.txt` — single line, e.g. `2026-07-04`
-- `spamdb.csv` — `number,category,negative,positive,neutral,name`
+- Blocks any call from a number you did not save in your contacts (you can turn this on or off)
+- Lets you make your own block list. You can block a whole group of numbers, for example every number that starts with `+9665`
+- Keeps a list of known spam numbers on the phone, and updates it by itself
+- Shows you who is calling while the phone rings, or tells you the number is unknown
+- Can send you a notification when a call is blocked
+- Keeps a list of blocked calls, and tells you why each call was blocked. Tap any line to block the number or copy it
+- Works with two SIM cards. You can turn it on for one SIM and off for the other
+- Blocks hidden and private numbers
 
-The CSV only gets downloaded when `version.txt` changes. A number gets auto-blocked when `negative >= 2 × positive` and the negative-rating toggle is on.
+### The spam list
 
-### Requirements
-- Android 10 (API 29) or newer
-- Permissions: `READ_CONTACTS`, `READ_PHONE_STATE`, `POST_NOTIFICATIONS` (13+), `INTERNET` + the **Call Screening role**
+The list of spam numbers comes from [block-number-data](https://github.com/tareknahas85-star/block-number-data). It is two simple files:
 
-### Build
-**GitHub Actions (recommended):** push to the repo and the *Build APK* workflow publishes `block-number.apk` straight to the [Releases page](https://github.com/tareknahas85-star/block-number-android/releases/tag/latest).
+- `version.txt` has the date of the last update
+- `spamdb.csv` has the numbers
 
-**Locally:**
+The app only looks at the date first. It downloads the numbers file again only when the date changes. This way the list stays fresh without updating the app itself.
+
+### What you need
+
+- Android 10 or newer
+- The app asks for: your contacts, the phone state, notifications, and internet. You also give it the call screening role.
+
+### How to build it
+
+**With GitHub Actions (easier):** push your changes to the repo, and the app file is published on the [releases page](https://github.com/tareknahas85-star/block-number-android/releases/tag/latest).
+
+**On your computer:**
+
 ```bash
 gradle assembleDebug
-# output: app/build/outputs/apk/debug/app-debug.apk
 ```
-Needs JDK 17 and the Android SDK (compileSdk 35).
 
-### How it works
-`ScreeningService` receives every incoming call before it rings and walks a decision chain: screening off / SIM excluded → allow; hidden number → block if enabled; **in contacts → always allow**; blacklist match → block; negative spam rating → block if enabled; not in contacts → block if enabled; otherwise allow (optionally with a caller info notification). Every block gets logged with its reason. Fails open if the contacts permission isn't granted.
+The app file comes out at `app/build/outputs/apk/debug/app-debug.apk`. You need JDK 17 and the Android SDK.
+
+### How it decides
+
+When a call comes in, before the phone rings, the app checks it step by step:
+
+1. Is the app off, or is this SIM excluded? Let the call in.
+2. Is the number hidden? Block it, if you turned that on.
+3. Is the number in your contacts? Always let it in.
+4. Is the number in your block list? Block it.
+5. Is the number known as spam? Block it, if you turned that on.
+6. Is the number not in your contacts? Block it, if you turned that on.
+7. If none of these, let the call in.
+
+Every blocked call is saved with the reason. If the app cannot read your contacts, it lets calls in instead of blocking them.
+
+---
+
+## بالعربي
+
+تطبيق أندرويد يحظر المكالمات التي لا تريدها. يستخدم الطريقة الرسمية في أندرويد لفحص المكالمات، فلا يحتاج روت، ولا يحتاج أن تغيّر تطبيق الاتصال في هاتفك. التطبيق بالعربي والإنكليزي.
+
+### ماذا يفعل
+
+- يحظر أي مكالمة من رقم لم تحفظه في جهات الاتصال (تستطيع تشغيل هذا أو إيقافه)
+- يتيح لك عمل قائمة حظر خاصة بك. تستطيع حظر مجموعة أرقام كاملة، مثلاً كل رقم يبدأ بـ `+9665`
+- يحتفظ بقائمة أرقام مزعجة معروفة داخل الهاتف، ويحدّثها بنفسه
+- يعرض لك من المتصل أثناء رنين الهاتف، أو يخبرك أن الرقم مجهول
+- يستطيع إرسال إشعار لك عند حظر أي مكالمة
+- يحتفظ بسجل المكالمات المحظورة، ويخبرك سبب حظر كل مكالمة. اضغط على أي سطر لتحظر الرقم أو تنسخه
+- يعمل مع شريحتين. تستطيع تشغيله على شريحة وإيقافه على الأخرى
+- يحظر الأرقام المخفية والخاصة
+
+### قائمة الأرقام المزعجة
+
+قائمة الأرقام المزعجة تأتي من [block-number-data](https://github.com/tareknahas85-star/block-number-data). وهي ملفان بسيطان:
+
+- `version.txt` فيه تاريخ آخر تحديث
+- `spamdb.csv` فيه الأرقام
+
+التطبيق ينظر إلى التاريخ أولاً فقط. ولا ينزّل ملف الأرقام من جديد إلا عندما يتغير التاريخ. بهذه الطريقة تبقى القائمة محدّثة دون تحديث التطبيق نفسه.
+
+### ما الذي تحتاجه
+
+- أندرويد 10 أو أحدث
+- التطبيق يطلب: جهات الاتصال، وحالة الهاتف، والإشعارات، والإنترنت. كما تعطيه صلاحية فحص المكالمات.
+
+### كيف تبنيه
+
+**عبر GitHub Actions (الأسهل):** ارفع تعديلاتك إلى الريبو، وسيُنشر ملف التطبيق في [صفحة الإصدارات](https://github.com/tareknahas85-star/block-number-android/releases/tag/latest).
+
+**على جهازك:**
+
+```bash
+gradle assembleDebug
+```
+
+يخرج ملف التطبيق في `app/build/outputs/apk/debug/app-debug.apk`. تحتاج JDK 17 و Android SDK.
+
+### كيف يقرّر
+
+عندما تأتي مكالمة، وقبل أن يرن الهاتف، يفحصها التطبيق خطوة خطوة:
+
+1. هل التطبيق مُوقَف، أو هذه الشريحة مستثناة؟ يسمح بالمكالمة.
+2. هل الرقم مخفي؟ يحظره، إذا كنت قد فعّلت ذلك.
+3. هل الرقم في جهات اتصالك؟ يسمح به دائماً.
+4. هل الرقم في قائمة الحظر عندك؟ يحظره.
+5. هل الرقم معروف كرقم مزعج؟ يحظره، إذا كنت قد فعّلت ذلك.
+6. هل الرقم غير موجود في جهات اتصالك؟ يحظره، إذا كنت قد فعّلت ذلك.
+7. إذا لم ينطبق أي شيء مما سبق، يسمح بالمكالمة.
+
+كل مكالمة محظورة تُسجَّل مع سببها. وإذا لم يستطع التطبيق قراءة جهات اتصالك، فإنه يسمح بالمكالمات بدلاً من حظرها.
