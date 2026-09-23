@@ -12,21 +12,12 @@ An Android app that blocks calls you do not want. It uses the official Android w
 
 - Blocks any call from a number you did not save in your contacts (you can turn this on or off)
 - Lets you make your own block list. You can block a whole group of numbers, for example every number that starts with `+9665`
-- Keeps a list of known spam numbers on the phone, and updates it by itself
+- Keeps a list of known spam numbers on the phone
 - Shows you who is calling while the phone rings, or tells you the number is unknown
 - Can send you a notification when a call is blocked
 - Keeps a list of blocked calls, and tells you why each call was blocked. Tap any line to block the number or copy it
 - Works with two SIM cards. You can turn it on for one SIM and off for the other
 - Blocks hidden and private numbers
-
-### The spam list
-
-The list of spam numbers comes from [block-number-data](https://github.com/tareknahas85-star/block-number-data). It is two simple files:
-
-- `version.txt` has the date of the last update
-- `spamdb.csv` has the numbers
-
-The app only looks at the date first. It downloads the numbers file again only when the date changes. This way the list stays fresh without updating the app itself.
 
 ### What you need
 
@@ -69,21 +60,12 @@ Every blocked call is saved with the reason. If the app cannot read your contact
 
 - يحظر أي مكالمة من رقم لم تحفظه في جهات الاتصال (تستطيع تشغيل هذا أو إيقافه)
 - يتيح لك عمل قائمة حظر خاصة بك. تستطيع حظر مجموعة أرقام كاملة، مثلاً كل رقم يبدأ بـ `+9665`
-- يحتفظ بقائمة أرقام مزعجة معروفة داخل الهاتف، ويحدّثها بنفسه
+- يحتفظ بقائمة أرقام مزعجة معروفة داخل الهاتف
 - يعرض لك من المتصل أثناء رنين الهاتف، أو يخبرك أن الرقم مجهول
 - يستطيع إرسال إشعار لك عند حظر أي مكالمة
 - يحتفظ بسجل المكالمات المحظورة، ويخبرك سبب حظر كل مكالمة. اضغط على أي سطر لتحظر الرقم أو تنسخه
 - يعمل مع شريحتين. تستطيع تشغيله على شريحة وإيقافه على الأخرى
 - يحظر الأرقام المخفية والخاصة
-
-### قائمة الأرقام المزعجة
-
-قائمة الأرقام المزعجة تأتي من [block-number-data](https://github.com/tareknahas85-star/block-number-data). وهي ملفان بسيطان:
-
-- `version.txt` فيه تاريخ آخر تحديث
-- `spamdb.csv` فيه الأرقام
-
-التطبيق ينظر إلى التاريخ أولاً فقط. ولا ينزّل ملف الأرقام من جديد إلا عندما يتغير التاريخ. بهذه الطريقة تبقى القائمة محدّثة دون تحديث التطبيق نفسه.
 
 ### ما الذي تحتاجه
 
